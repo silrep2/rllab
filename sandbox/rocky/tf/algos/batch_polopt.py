@@ -27,6 +27,7 @@ class BatchPolopt(RLAlgorithm):
             discount=0.99,
             gae_lambda=1,
             plot=False,
+            use_tf_asyn_plot = False,
             pause_for_plot=False,
             center_adv=True,
             positive_adv=False,
@@ -70,6 +71,7 @@ class BatchPolopt(RLAlgorithm):
         self.discount = discount
         self.gae_lambda = gae_lambda
         self.plot = plot
+        self.use_tf_asyn_plot = use_tf_asyn_plot
         self.pause_for_plot = pause_for_plot
         self.center_adv = center_adv
         self.positive_adv = positive_adv

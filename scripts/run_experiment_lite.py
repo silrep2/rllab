@@ -55,6 +55,8 @@ def run_experiment(argv):
                         help='Name of the pickle file to resume experiment from.')
     parser.add_argument('--plot', type=ast.literal_eval, default=False,
                         help='Whether to plot the iteration results')
+    parser.add_argument('--use_tf_asyn_plot', type=ast.literal_eval, default=False,
+                        help='Whether to plot the iteration results asynchronouslly with TF')
     parser.add_argument('--log_tabular_only', type=ast.literal_eval, default=False,
                         help='Whether to only print the tabular log information (in a horizontal format)')
     parser.add_argument('--seed', type=int,
@@ -76,10 +78,13 @@ def run_experiment(argv):
         if args.seed is not None:
             parallel_sampler.set_seed(args.seed)
 
-    if args.plot:
+    if args.plot and not args.use_tf_asyn_plot:
         from rllab.plotter import plotter
         plotter.init_worker()
 
+    # if args.use_tf_asyn_plot:
+    #     from rllab.plotter import plotter
+    #     plotter.
     if args.log_dir is None:
         log_dir = osp.join(default_log_dir, args.exp_name)
     else:
